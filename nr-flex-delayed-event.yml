@@ -1,0 +1,16 @@
+integrations:
+  - name: nri-flex
+    interval: 1m
+    config:
+      name: alertExample
+      apis:
+        - event_type: AlertOnDelayedEvent
+          url: https://api.newrelic.com/graphql
+          method: POST
+          payload: >
+            {"query":"{  actor {    account(id: YOUR-NR-ACCOUNT-ID) {      nrql(query: \"SELECT request.headers.host, httpResponseCode FROM Transaction WHERE request.headers.host = \u0027powerful-anchorage-76626.herokuapp.com\u0027 AND name = \u0027Controller/Sinatra/Sinatra::Application/GET /\u0027 AND httpResponseCode = \u0027200\u0027 SINCE 1 week ago\") {        results\n      }    }  }}", "variables":""}
+          headers:
+            API-Key: YOUR-PERSONAL_API_KEY
+            Content-Type: application/json
+          remove_keys:
+            - time
