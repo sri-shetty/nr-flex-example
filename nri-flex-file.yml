@@ -1,0 +1,12 @@
+integrations:
+  - name: nri-flex
+    interval: 1m
+    config:
+      name: jqTest
+      apis:
+        - event_type: UsersByHosting
+          file: /home/ubuntu/tsdata.json
+          jq: ".usersByHosting"
+        - event_type: UsersByDomain
+          file: /home/ubuntu/tsdata.json
+          jq: ".usersByDomain"
