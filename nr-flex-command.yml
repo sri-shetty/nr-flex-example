@@ -1,0 +1,15 @@
+# Process text output
+integrations:
+  - name: nri-flex
+    interval: 1m
+    config:
+      name: mailQ
+      apis:
+        - event_type: mailQueue
+          commands:
+            # output the first like of mailq command
+            - run: mailq | head -1
+              split: horizontal
+              set_header: [queueDepth]
+              regex_match: true
+              split_by: ([a-zA-Z0-9\s]+)
