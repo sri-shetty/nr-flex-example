@@ -1,0 +1,8 @@
+integrations:
+  - name: nri-flex
+    interval: 1m
+    config:
+      name: AzureAPI
+      apis:
+        - event_type: AzureStatus
+          url: https://status.dev.azure.com/_apis/status/health?api-version=6.0-preview.1
